@@ -52,7 +52,7 @@ h3, h4 {
 
 /* DESIGNER */
 .design-window {
-	height: 80vh;
+	min-height: 80vh;
 	background-color: rgba(250,250,250,1);
 	border: 1px solid #bbb;
 }
@@ -70,6 +70,14 @@ h3, h4 {
 }
 
 /* gridster */
+/*.gridster {
+    width: 1138px;
+    margin: 0 auto;
+}*/
+.gridster ul {
+	/* forces grid to maintain width and avoid collapsing*/
+	width: 100% !important; 
+}
 .gridster li {
 	list-style-type: none;
 	cursor: move;

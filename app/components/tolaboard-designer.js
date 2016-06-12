@@ -14,14 +14,16 @@ export default Ember.Component.extend({
 
 			// what if I just add new widget at 1,1 with 1,1 size?
 			grid.gridster({
-			        widget_margins: [10, 10],
+			        widget_margins: [5, 5],
 			        widget_base_dimensions: [140, 140],
+			        /*autogenerate_stylesheet: false,*/
+
 			        resize: { enabled: true}
 			});
 
 			// API object for dynamic
 			grid = grid.gridster().data('gridster');
-			grid.add_widget('<li></li>', 1, 1, 1, 1);
+			grid.add_widget('<li></li>', 2, 2, 1, 1);
 				
 			
 
