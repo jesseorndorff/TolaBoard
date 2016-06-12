@@ -1,0 +1,79 @@
+* {
+	font-family: futura, arial;
+}
+h3, h4 {
+	color: #777;
+}
+.navbar-default {
+	background-color: rgb(0, 175, 170);
+}
+.navbar a {
+	font-family: futura, arial;
+	font-size: 14px;
+	color: #fff !important;
+
+}
+.tola-brand {
+	font-size: 22px;
+	font-weight: bold;
+}
+.dropdown-menu li a {
+	color: rgb(77, 82, 90) !important;
+}
+.dropdown li:first-child {
+	color: rgb(0, 175, 170) !important;
+}
+.nav-spacer {
+	margin-top: 50px;
+}
+
+/* datasources.hbs */
+.thumbnail {
+	text-decoration: none !important;
+	color: #fff;
+}
+.thumbnail:hover {
+	opacity: .60;	
+}
+.data-internal {
+	background-color: rgb(77, 82, 90);
+}
+.data-external {
+	background-color: rgb(129,188,0);
+}
+.datasource-item {	
+	padding: 5px;
+}
+.datasource-date {
+	font-style: italic;
+	color: #ddd;
+	font-size: 12px;
+}
+
+/* DESIGNER */
+.design-window {
+	height: 80vh;
+	background-color: rgba(250,250,250,1);
+	border: 1px solid #bbb;
+}
+.design-window button {
+	margin-top: 15px;
+	margin-left: 15px;
+	background-color: rgba(77,82,90,.60);
+}
+.design-window button:hover {
+	background-color: rgba(77,82,90,.75);
+	color: rgb(255,255,255);
+}
+.tolaboard-update-toggle {
+	float: left;
+}
+
+/* gridster */
+.gridster li {
+	list-style-type: none;
+	cursor: move;
+	border: 1px solid #aaa;
+	border-radius: 2px;
+	box-shadow: 0 1px 1px 0;
+}

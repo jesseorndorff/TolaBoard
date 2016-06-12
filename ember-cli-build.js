@@ -20,5 +20,14 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
+  // CSS
+  app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
+  app.import('bower_components/gridster/dist/jquery.gridster.min.css');
+
+  // JavaScript
+  app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
+  app.import('bower_components/gridster/dist/jquery.gridster.min.js');
+
+
   return app.toTree();
 };
