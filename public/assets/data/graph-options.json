@@ -1,0 +1,5 @@
+[{"label": "Bar Graph", "img": "assets/images/graph-library/builder-bar.png"}, 
+ {"label": "Pie Graph", "img": "assets/images/graph-library/builder-pie.png"}, 
+ {"label": "Line Graph", "img": "assets/images/graph-library/builder-line.png"},
+ {"label": "Map", "img": "assets/images/graph-library/builder-map.png"},
+ {"label": "Scatter/Bubble Graph", "img": "assets/images/graph-library/builder-scatter.png"}]

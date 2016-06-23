@@ -1,13 +1,113 @@
-<h5>This is the tolaboard designer component template</h5>
-
 <div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="design-window">
-				<button class="btn btn-default" {{action 'addWidget' on='click'}}>Add Widget</button>
+<div class="panel panel-default tb-designer-header">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>TolaBoard Designer</h4>
+                </div>
 
-				<div class="gridster"><ul><!-- gridster stuff --></ul></div>
+                <div class="col-md-6 col-md-offset-2">
+                    <div class="btn-group" role="group">
+                        <div class="btn-group">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							    Edit TolaBoard
+							    <span class="caret"></span>
+							</button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							    <li><a href="/mydashboards">Weekly Snapshot</a></li>
+					            <li><a href="/mydashboards">Beneficiary Info</a></li>
+					            <li><a href="/mydashboards">Refugee Flow</a></li>
+					            <li><a href="/mydashboards">Program Analytics and Insights</a></li>
+							</ul>
+                        </div>
+                        <div class="btn-group">
+                            <button {{action 'toggleNewBoard'}} class="btn btn-tola-accent">New TolaBoard</button>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end first panel -->    
+	
+	{{#if showDesigner}}
+	<div class="panel panel-default tb-designer-header">
+        <div class="panel-body">
+			<div class="row">
+				<div class="col-md-12">
+					
+					<div class="design-window">
+						<button class="btn btn-default" {{action 'addWidget' on='click'}}>Add Component</button>
+
+						<div class="gridster"><ul><!-- gridster stuff --></ul></div>
+					</div>
+					
+				</div>
 			</div>
 		</div>
+
+    </div>
+    {{/if}}
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="container">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog builder-widget" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Graph Builder</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div id="metric-select" class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    Select a Data Source
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu">
+					  	{{#each dataSources as |source|}}
+					  		<li {{action 'getData'}}>
+					  			<a href="">{{source.label}}</a>
+					  		</li>
+					  	{{/each}}	
+					  		<!-- always show ad-hoc -->
+					  		<li><a href="">Ad hoc (not persisted)</a></li>				    
+					  </ul>
+			</div>
+			{{#if showDataSourcePreview}}
+			<div class="row data-source-preview">
+				<img alt="table preview" src="assets/images/graph-library/table1.png">
+			</div>
+			{{/if}}
+
+			{{#if showVizSelection}}
+
+			<div class="row viz-selection">
+				<h4>Select a Visualization Type</h4>
+				
+				{{#each graphOptions as |graph|}}
+					<div class="col-md-3 thumbnail">
+						<img src="{{graph.img}}" class="img-responsive">
+						<p>{{graph.label}}</p>
+					</div>
+				{{/each}}
+				
+			</div>
+			{{/if}}
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-tola-accent">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 </div>

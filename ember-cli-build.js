@@ -29,5 +29,6 @@ module.exports = function(defaults) {
   app.import('bower_components/gridster/dist/jquery.gridster.min.js');
 
 
+
   return app.toTree();
 };
