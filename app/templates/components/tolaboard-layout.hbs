@@ -1,0 +1,23 @@
+<div class="panel panel-default tb-designer-header">
+    <div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">				
+				<div class="design-window">
+					<button class="btn btn-default" {{action 'addItem' on='click'}}>Add Component</button>
+
+
+					<div class="gridster"><ul><!-- gridster stuff -->
+					  
+					  {{#each tolaboardItems as |item|}}
+					    {{tolaboard-item index=item}}
+					  {{/each}}
+					</ul></div>
+					
+					<!-- Single instance of this component shared across tolaboard-item components.. triggered by modal -->
+					{{graph-builder-widget dataSources=dataSources graphOptions=graphOptions}}
+				</div>
+					
+			</div>
+		</div>
+	</div>
+</div>

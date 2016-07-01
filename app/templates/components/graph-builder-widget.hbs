@@ -1,0 +1,67 @@
+<!-- Modal -->
+<div class="container">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog builder-widget" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Graph Builder</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div id="metric-select" class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    Select a Data Source
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu">
+					  	{{#each dataSources as |source|}}
+					  		<li {{action 'getData' source.url}}>
+					  			<a href="">{{source.label}}</a>
+					  		</li>
+					  	{{/each}}	
+					  		<!-- always show ad-hoc -->
+					  		<li><a href="">Ad hoc (not persisted)</a></li>				    
+					  </ul>
+			</div>
+			<!-- Uses json-2-table component to table-ize data -->
+			{{#if showDataSourcePreview}}
+			<div class="row data-preview" style="width: 80%; height:150px;overflow:auto; border: 1px solid #ccc;">	
+				{{json-2-table displayData=scopeData}}
+			</div>
+			{{/if}}
+
+			{{#if showVizSelection}}
+
+			<div class="row viz-selection">
+				<h4>Select a Visualization Type</h4>
+				
+				{{#each graphOptions as |graph|}}
+					<div class="col-md-3 thumbnail">
+						<img data-graph={{graph.id}} src="{{graph.img}}" class="img-responsive" {{action 'showGraphDataModel' on='click'}}>
+						<p>{{graph.label}}</p>
+					</div>
+				{{/each}}
+				
+			</div>
+			{{/if}}
+
+			<!-- Show this area when a viz type is selected -->
+			{{#if showDataModel}}
+				<h5>Specify a data field for each required input</h5>
+				
+				{{#each scopeGraph as |modelField|}}
+				 <button class="btn btn-default">{{modelField}} <span class="caret"></span></button>
+				 
+				{{/each}}
+			{{/if}}
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-tola-accent">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>

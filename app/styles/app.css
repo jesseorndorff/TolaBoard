@@ -111,9 +111,26 @@ h1,h2,h3, h4 {
 .builder-widget {
 	width: 1000px;
 }
-.data-source-preview {
+
+/* Data Source Preview Scrollbox */
+.data-preview {
 	margin: 10px 10px;
+
 }
+.data-preview th {
+	background-color: #555;
+	color: #fff;
+	font-size: 11px;
+	padding-left: 1px;
+}
+.data-preview td {
+
+	border: 1px solid #ccc;
+	font-size: 11px;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
 .viz-selection div {
 	margin: 10px 5px;
 	color: #777;

@@ -1,0 +1,14 @@
+<table>
+	<thead style="display: table-header-group;">
+		{{#each-in displayData.[0] as |colName|}}
+			<th>{{colName}}</th>
+		{{/each-in}}
+	</thead>
+	{{#each displayData as |row index|}}
+		<tr>
+			{{#each-in row as |colName colValue|}}
+				<td>{{colValue}}</td>
+			{{/each-in}}
+		</tr>		
+	{{/each}}
+</table>
