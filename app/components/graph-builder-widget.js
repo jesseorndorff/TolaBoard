@@ -24,7 +24,7 @@ export default Ember.Component.extend({
 			var self = this;
 			var url = source.url;
 			this.toggleProperty('showDataSourcePreview');
-			this.set('dataSourceLabel',)
+			// this.set('dataSourceLabel')
 			// this.toggleProperty('showVizSelection');
 
 			// this is working... updating scopeData property in callback

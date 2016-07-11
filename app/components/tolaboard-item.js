@@ -8,9 +8,9 @@ export default Ember.Component.extend({
 		console.log('init called');
 	},
 	didInsertElement: function() {
-		console.log('item this: ',this);
-		console.log('item this', this.get('index'));
-		this.('graphTarget') = this.get('element');		
+		/*console.log('item this: ',this);
+		console.log('item this', this.get('index'));*/
+		// this.('graphTarget') = this.get('element');		
 		
 		// get the gridster object and max/min col and row
 		var grid = Ember.$('.gridster ul');
