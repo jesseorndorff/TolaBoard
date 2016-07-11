@@ -95,6 +95,19 @@ export default Ember.Component.extend({
 
 		},
 
+		saveGraph: function() {
+			console.log('current graph and target li');
+			console.log(this.get('graphTarget'));
+
+
+			// place copy of graph into li
+			// current-builder-widget-graph
+			/*Ember.$.('current-builder-widget-graph');*/
+			Ember.$(this.get('graphTarget')).append(Ember.$('#current-builder-widget-graph').clone());
+
+
+		}
+
 		
 		
 	}

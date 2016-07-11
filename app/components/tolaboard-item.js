@@ -9,7 +9,8 @@ export default Ember.Component.extend({
 	},
 	didInsertElement: function() {
 		console.log('item this: ',this);
-		console.log('item this', this.get('index'));		
+		console.log('item this', this.get('index'));
+		this.('graphTarget') = this.get('element');		
 		
 		// get the gridster object and max/min col and row
 		var grid = Ember.$('.gridster ul');
@@ -26,7 +27,7 @@ export default Ember.Component.extend({
 
 		// get the .hbs template for this instance of the component, set it to thisView
 		var thisView = this.get('element').childNodes[0];
-		this.set('targetLI', thisView);
+		this.set('graphTarget', thisView);
 		// remove it so we can add it back via gridster add_widget()
 		this.get('element').childNodes[0].remove();
 		var newlyAddedLI = grid.add_widget(thisView, 2, 2, 1, 1); // returns generated <li>
@@ -40,19 +41,21 @@ export default Ember.Component.extend({
 	actions: {
 		testFromView: function() { 
 			console.log('i am from tolaboard item view and element is'); 
-			var target = this.get('targetLI');
+			var target = this.get('graphTarget');
+			console.log(target);
 			// $(target).append('<svg><circle cy="40" cx="40" r="10"</circle></svg>');
 
 		},
 		deleteWidget: function() {
 			// get the parent li for this button			
-			console.log('delete me');			
-			var parentLI = Ember.$(this).parent().parent();
+			console.log('delete me');
+			
+			var parentLI = this.get('graphTarget');
 			
 			/* gridster takes about half a second to delete the widget
 			   and it's annoying... so we'll hide it right away while
 			   waiting for remove_widget to complete */
-			// parentLI.css('visibility','hidden');
+			Ember.$(parentLI).css('visibility','hidden');
 
 			/* USE THE API!  Don't remove with just jQuery 
 			   It needs removed from data object too. If you have any

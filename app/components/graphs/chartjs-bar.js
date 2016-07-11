@@ -34,7 +34,7 @@ export default Ember.Component.extend({
 
 		// test to render a static bar graph
 
-		var chartElem = Ember.$('#bar-graph');
+		var chartElem = Ember.$('#current-builder-widget-graph');
 
 		var config = {
 	    	type: 'bar',

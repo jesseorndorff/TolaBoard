@@ -9,12 +9,12 @@
 					<div class="gridster"><ul><!-- gridster stuff -->
 					  
 					  {{#each tolaboardItems as |item|}}
-					    {{tolaboard-item index=item}}
+					    {{tolaboard-item graphTarget=graphTarget index=item}}
 					  {{/each}}
 					</ul></div>
 					
-					<!-- Single instance of this component shared across tolaboard-item components.. triggered by modal -->
-					{{graph-builder-widget dataSources=dataSources graphOptions=graphOptions}}
+					<!-- Single instance of this component shared across tolaboard-item components.. triggered by modal which is activated by the edit button (pencil) in the tolaboard-item component template-->
+					{{graph-builder-widget dataSources=dataSources graphOptions=graphOptions graphTarget=graphTarget}}
 				</div>
 					
 			</div>
