@@ -8,6 +8,7 @@ export default Ember.Component.extend({
 		console.log('init called');
 	},
 	didInsertElement: function() {
+		console.log('item this: ',this);
 		console.log('item this', this.get('index'));		
 		
 		// get the gridster object and max/min col and row
@@ -19,49 +20,39 @@ export default Ember.Component.extend({
 		        widget_base_dimensions: [140, 140],
 		        resize: { enabled: true}
 		});
-		
-		/* This next section is kinda weird... the gridster API wants the html so it can
-		   pass it into the add_widget method... but this is view code
-		   and should be in the Ember template. The API appends various data
-		   tags to the appended DOM nodes, and those are used by the css
-		   to size and place the widgets. There are also, likely, functions bound
-		   to the drag events. So, we really need to add the view code via Gridster API
-
-		   Note: The data-target attr for the first button activates the 
-		   graph-builder-widget component which lives in the tolaboard-layout...
-		   so one instance of the builder regardless of gridster widgets
-		*/
-		var buttonHTML = '<div class="widget-ui btn-group">' +
-						 '<button data-toggle="modal" data-target="#myModal" class="btn btn-xs"><span class="fa fa-edit"></span></button>' +
-		                 '<button class="btn btn-xs delete-button"><span class="fa fa-trash"></span></button>' +
-		                 '</div>',
-		widgetLI = '<li>' + buttonHTML + '</li>';
-
+				
 		// API object for dynamic
 		grid = grid.gridster().data('gridster');
-		grid.add_widget(widgetLI, 2, 2, 1, 1);		
-		
-		/* We're defining the delete action in this module, but since the 
-		   gridster api isn't aware of Ember actions. So, we're cheating
-		   and using jQuery... but at least the action is defined here :)
-		*/
-		Ember.$('.delete-button').on('click', this.actions.deleteWidget);
 
-		/* end weird work-around for gridster vs Ember issue */
+		// get the .hbs template for this instance of the component, set it to thisView
+		var thisView = this.get('element').childNodes[0];
+		this.set('targetLI', thisView);
+		// remove it so we can add it back via gridster add_widget()
+		this.get('element').childNodes[0].remove();
+		var newlyAddedLI = grid.add_widget(thisView, 2, 2, 1, 1); // returns generated <li>
+		
+
 	},
 
 	didRender: function() { console.log('didRender invoked'); },
 	willDestroyElement: function() { console.log('willDestroyElement'); },
 
 	actions: {
+		testFromView: function() { 
+			console.log('i am from tolaboard item view and element is'); 
+			var target = this.get('targetLI');
+			// $(target).append('<svg><circle cy="40" cx="40" r="10"</circle></svg>');
+
+		},
 		deleteWidget: function() {
 			// get the parent li for this button			
+			console.log('delete me');			
 			var parentLI = Ember.$(this).parent().parent();
 			
 			/* gridster takes about half a second to delete the widget
 			   and it's annoying... so we'll hide it right away while
 			   waiting for remove_widget to complete */
-			parentLI.css('visibility','hidden');
+			// parentLI.css('visibility','hidden');
 
 			/* USE THE API!  Don't remove with just jQuery 
 			   It needs removed from data object too. If you have any

@@ -1,8 +1,11 @@
 [{"id":0, "label": "Bar Graph", 
   "img": "assets/images/graph-library/builder-bar.png",
-  "dataModel": [{"name": "group", "label": "Group", "multiple": false, "type": "all", "required": true},                  
-                {"name": "size", "label": "Metric", "multiple": false, "type": "number", "required": true}
+  "component": "graphs/chartjs-bar",
+  "dataModel": [{"field": {"name":"group", "label":"Group", "assigned":""}, "name": "group", "label": "Group", "multiple": false, "type": "all", "required": true},                  
+                {"field": {"name":"size", "label":"Metric", "assigned":""}, "name": "size", "label": "Metric", "multiple": false, "type": "number", "required": true}
                 ]},
 
- {"id":1, "label": "Pie Graph", "img": "assets/images/graph-library/builder-pie.png", "dataModel": [{"name": "group", "label": "Group", "multiple": false, "type": "all", "required": true}, {"name": "size", "label": "Metric", "multiple": false, "type": "number", "required": true}]}, 
- {"id":2, "label": "Map", "img": "assets/images/graph-library/builder-map.png", "dataModel": [{"name": "lat", "label": "Latitiude", "multiple": false, "type": "latlong", "required": true}, {"name": "lng", "label": "Longitude", "multiple": false, "type": "latlong", "required": true},{"name": "size", "label": "Measure", "multiple": false, "type": "number", "required": false}]}]
+ {"id":1, "label": "Pie Graph", "img": "assets/images/graph-library/builder-pie.png", 
+ "component": "graphs/chartjs-pie", "dataModel": [{"field": {"name":"group", "label":"Group", "assigned":""}, "name": "group", "label": "Metric", "multiple": false, "type": "all", "required": true}, {"field": {"name":"size", "label":"metric", "assigned":""}, "name": "size", "label": "Metric", "multiple": false, "type": "number", "required": true}]}, 
+ {"id":2, "label": "Map", "img": "assets/images/graph-library/builder-map.png", 
+ "component": "graphs/leaflet-map", "dataModel": [{"field": {"name":"latitiude", "label":"Latitiude", "assigned":""}, "name": "lat", "label": "Latitiude", "multiple": false, "type": "latlong", "required": true}, {"field": {"name":"longitude", "label":"Longitude", "assigned":""}, "name": "lng", "label": "Longitude", "multiple": false, "type": "latlong", "required": true},{"field": {"name":"size", "label":"Metric", "assigned":""}, "name": "size", "label": "Measure", "multiple": false, "type": "number", "required": false}]}]

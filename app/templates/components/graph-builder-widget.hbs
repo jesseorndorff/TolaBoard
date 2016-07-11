@@ -10,14 +10,14 @@
 	        <h4 class="modal-title" id="myModalLabel">Graph Builder</h4>
 	      </div>
 	      <div class="modal-body">
-	        <div id="metric-select" class="dropdown">
+	        <div id="data-source-select" class="dropdown">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					    Select a Data Source
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu">
 					  	{{#each dataSources as |source|}}
-					  		<li {{action 'getData' source.url}}>
+					  		<li {{action 'getData' source}}>
 					  			<a href="">{{source.label}}</a>
 					  		</li>
 					  	{{/each}}	
@@ -28,7 +28,7 @@
 			<!-- Uses json-2-table component to table-ize data -->
 			{{#if showDataSourcePreview}}
 			<div class="row data-preview" style="width: 80%; height:150px;overflow:auto; border: 1px solid #ccc;">	
-				{{json-2-table displayData=scopeData}}
+				{{json-2-table displayData=scopeData showVizSelection=showVizSelection}}
 			</div>
 			{{/if}}
 
@@ -39,7 +39,7 @@
 				
 				{{#each graphOptions as |graph|}}
 					<div class="col-md-3 thumbnail">
-						<img data-graph={{graph.id}} src="{{graph.img}}" class="img-responsive" {{action 'showGraphDataModel' on='click'}}>
+						<img data-graph={{graph.id}} src="{{graph.img}}" class="img-responsive" {{action 'showGraphDataModel' graph on='click'}}>
 						<p>{{graph.label}}</p>
 					</div>
 				{{/each}}
@@ -51,11 +51,32 @@
 			{{#if showDataModel}}
 				<h5>Specify a data field for each required input</h5>
 				
-				{{#each scopeGraph as |modelField|}}
-				 <button class="btn btn-default">{{modelField}} <span class="caret"></span></button>
-				 
-				{{/each}}
+				
+				{{#each scopeDataModel as |dataModel|}}  	
+				<div class="btn-group">
+					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    {{dataModel.field.label}} <span class="caret"></span>
+				 </button>
+
+					<ul class="dropdown-menu">
+						<!-- iterate over column names -->
+						{{#each-in scopeData.[0] as |colName|}}
+							<li {{action 'tryGraphRender' dataModel.field.name colName}}>{{colName}}</li>
+						{{/each-in}}
+					</ul>
+				</div>
+				{{/each}}				
+
+
+				<!-- Moment of truth... graph time!! -->
+				{{#if renderGraph}}
+					{{component scopeComponent scopeData=scopeData scopeDataModel=scopeDataModel graphConfig=graphConfig}}
+				{{/if}}
+			
+
 			{{/if}}
+			
+			
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

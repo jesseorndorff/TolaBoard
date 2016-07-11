@@ -29,15 +29,15 @@ export default Ember.Component.extend({
 
 		metricList = metricList.map(function(d) { return d.value; })
 
-		/*console.log('labelList ',labelList);
-		console.log('metricList', metricList);*/
+		console.log('labelList ',labelList);
+		console.log('metricList', metricList);
 
 		// test to render a static bar graph
 
-		var chartElem = Ember.$('#bar-graph');
+		var chartElem = Ember.$('#pie-graph');
 
 		var config = {
-	    	type: 'bar',
+	    	type: 'pie',
 	    	data: {
 	        	labels: labelList,
 	        	datasets: [{	            	
@@ -53,8 +53,5 @@ export default Ember.Component.extend({
 
 	willDestroyElement: function() {
 		console.log('willDestroyElement called');
-	},
-	/*didRender: function() { console.log('chart didRender')},
-	didReceiveAttrs: function() {console.log('chart didReceiveAttrs')},*/
-	
+	}
 });
