@@ -5,6 +5,7 @@ export default Ember.Component.extend({
 	self: this,
 
 	dataAgg: Ember.inject.service('data-aggregator'),
+	colorService: Ember.inject.service('color-palette'),
 
 	didInsertElement: function() {
 
@@ -32,6 +33,9 @@ export default Ember.Component.extend({
 		console.log('labelList ',labelList);
 		console.log('metricList', metricList);
 
+		var colorList = this.get('colorService')
+		                .classicPalette;
+
 		// test to render a static bar graph
 
 		var chartElem = Ember.$('#pie-graph');
@@ -42,7 +46,7 @@ export default Ember.Component.extend({
 	        	labels: labelList,
 	        	datasets: [{	            	
 	            	data: metricList,
-	            	backgroundColor: '#00afaa'
+	            	backgroundColor: colorList
 		        }]
 		    },
 		    options: {}

@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('vizbuilder');
   this.route('datasources');
   this.route('designer');
+  this.route('sharedboards');
 });
 
 export default Router;

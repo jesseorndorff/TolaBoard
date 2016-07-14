@@ -27,7 +27,8 @@ export default Ember.Component.extend({
 		                 						scopeDataModel[0].field.assigned, 
 		                 						scopeDataModel[1].field.assigned);
 
-		metricList = metricList.map(function(d) { return d.value; })
+		metricList = metricList.map(function(d) { return d.value; });
+		console.log('bar this', this);
 
 		/*console.log('labelList ',labelList);
 		console.log('metricList', metricList);*/
@@ -54,6 +55,10 @@ export default Ember.Component.extend({
 	willDestroyElement: function() {
 		console.log('willDestroyElement called');
 	},
+
+	draw: function() {
+		
+	}
 	/*didRender: function() { console.log('chart didRender')},
 	didReceiveAttrs: function() {console.log('chart didReceiveAttrs')},*/
 	

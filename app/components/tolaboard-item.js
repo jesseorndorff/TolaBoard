@@ -2,12 +2,16 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+	
+
 	/* fires when component comes into existance in the DOM */	
 	init: function() { 
 		this._super(...arguments);
 		console.log('init called');
+
 	},
 	didInsertElement: function() {
+
 		/*console.log('item this: ',this);
 		console.log('item this', this.get('index'));*/
 		// this.('graphTarget') = this.get('element');		
@@ -48,7 +52,8 @@ export default Ember.Component.extend({
 		},
 		deleteWidget: function() {
 			// get the parent li for this button			
-			console.log('delete me');
+			console.log('delete me');			
+			console.log(this);
 			
 			var parentLI = this.get('graphTarget');
 			
@@ -74,7 +79,7 @@ export default Ember.Component.extend({
 					   2. tolaboardItems array as well
 			     	*/
 			     	
-			     });
+			      });
 			
 
 		}

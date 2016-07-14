@@ -29,7 +29,12 @@ export default Ember.Component.extend({
 
 			// this is working... updating scopeData property in callback
 			Ember.$.getJSON(url, function(data) { 					
-				self.set('scopeData', data.splice(0,1800));
+				self.set('scopeData', data.splice(0,25));
+				self.get('scopeData').map(function(d) { 
+					delete d.name;
+					delete d.spouse;
+
+				});
 				
 			});
 
@@ -103,7 +108,7 @@ export default Ember.Component.extend({
 			// place copy of graph into li
 			// current-builder-widget-graph
 			/*Ember.$.('current-builder-widget-graph');*/
-			Ember.$(this.get('graphTarget')).append(Ember.$('#current-builder-widget-graph').clone());
+			// Ember.$(this.get('graphTarget')).append(Ember.$('#current-builder-widget-graph').clone());
 
 
 		}
