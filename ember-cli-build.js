@@ -23,6 +23,7 @@ module.exports = function(defaults) {
   // CSS
   app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
   app.import('bower_components/gridster/dist/jquery.gridster.min.css');
+  app.import('bower_components/animate.css/animate.min.css');
 
   // JavaScript
   app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');

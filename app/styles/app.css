@@ -196,6 +196,10 @@ a.thumbnail:focus {
 .field-select li {
 	padding-left: 3px;
 }
+.field-select li:hover {
+	background-color: #ddd;	
+	cursor: default;
+}
 #footer {
 	position: fixed;
 	width: 100%;

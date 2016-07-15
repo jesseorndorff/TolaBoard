@@ -10,7 +10,7 @@
 	        <h4 class="modal-title" id="myModalLabel">Graph Builder</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<div class="container">
+	      	<div class="container-fluid">
 	        <div id="data-source-select" class="row dropdown">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					    Select a Data Source
@@ -30,7 +30,7 @@
 			
 			{{#if showDataSourcePreview}}
 			{{partial templates/partials/spinner}}
-			<div class="row data-preview" style="width: 80%; height:150px;overflow:auto; border: 1px solid #ccc;">	
+			<div class="row data-preview animated fadeIn" style="width: 80%; height:150px;overflow:auto; border: 1px solid #ccc;">	
 				{{json-2-table displayData=scopeData showVizSelection=showVizSelection}}
 			</div>
 			{{/if}}
@@ -39,18 +39,18 @@
 
 			<div class="row">
 				<div class="col-md-12">
-			  		<div>
+			  		<div style="margin-top: 20px;">
 						<h4>Select a Visualization Type</h4>
 					</div>
 				</div>
 			</div>
-			<div class="row graph-library">
+			<div class="row graph-library animated fadeIn">
 				{{#each graphOptions as |graph|}}
-				<div class="col-sm-3 col-md-3">
+				<div class="col-sm-3 col-md-3 col-lg-2">
 				  <a class="thumbnail viz-selection">
 					<img data-graph={{graph.id}} src="{{graph.img}}" class="img-responsive" {{action 'showGraphDataModel' graph on='click'}}>
 					<hr>
-					<h5>{{graph.label}}</h5>
+					<h5><strong>{{graph.label}}</strong></h5>
 				  </a>
 				</div>
 				{{/each}}
@@ -60,7 +60,8 @@
 
 			<!-- Show this area when a viz type is selected -->
 			{{#if showDataModel}}
-				<h5>Specify a data field for each required input</h5>
+			<div class="animated fadeIn">
+				<h4  style="margin-top: 20px;">Specify a data field for each required input</h4>
 				
 				
 				{{#each scopeDataModel as |dataModel|}}  	
@@ -82,9 +83,8 @@
 				<!-- Moment of truth... graph time!! -->
 				{{#if renderGraph}}
 					{{component scopeComponent scopeData=scopeData scopeDataModel=scopeDataModel graphConfig=graphConfig}}
-				{{/if}}
-			
-
+				{{/if}}			
+			</div>
 			{{/if}}
 			
 			
