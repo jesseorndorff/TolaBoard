@@ -1,0 +1,27 @@
+<section id="edit-dashboard">	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- The dashboard-edit route contains a dynamic segment that represents an id to obtain a partiuclar persisted tolaboard. It is similar to the dashboard route, but allows the tolaboard to be editable via the argument "itemMutable" being set to true. 
+
+				The model is a single tolaboard, and we will use model.dashboard in a "for each" block to render each tolaboard item in the dashboard... using render-tolaboard-item component			
+			-->
+				<h2>{{model.title}}</h2>
+				<div class="gridster">
+					<ul>
+						{{#each model.dashboard as |tbItem|}}					
+							{{render-tolaboard-item itemMutable=true tbItemConfig=tbItem}}	
+						{{/each}}
+					</ul>
+				</div>				
+				{{#if showGraphBuilder}}
+					{{graph-builder-widget 
+						dataSources=dataSources 
+						graphOptions=graphOptions 
+						tolaGraphConfig=tolaGraphConfig
+						updateSaveBoardItem='updateSaveBoardItem'}}
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</section>

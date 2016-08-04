@@ -8,7 +8,7 @@ export default Ember.Component.extend({
 	
 
 	didInsertElement:  function() {
-			console.log('draw the grid');
+			// console.log('draw the grid');
 
 			Ember.$(".gridster ul").gridster({
 			        widget_margins: [5, 5],

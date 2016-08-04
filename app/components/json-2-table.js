@@ -24,6 +24,6 @@ export default Ember.Component.extend({
 	
 
 	didInsertElement: function() {
-		console.log('didInsertElement on json-2-table invoked');
+		// console.log('didInsertElement on json-2-table invoked');
 	}
 });

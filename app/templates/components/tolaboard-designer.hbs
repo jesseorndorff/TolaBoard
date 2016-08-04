@@ -15,7 +15,7 @@
 							</button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							    <li><a href="/mydashboards">Weekly Snapshot</a></li>
-					            <li><a href="/mydashboards">Beneficiary Info</a></li>
+					            <li><a href="/dashboards-edit/1">RRIMA Primary Dashboard</a></li>
 					            <li><a href="/mydashboards">Refugee Flow</a></li>
 					            <li><a href="/mydashboards">Program Analytics and Insights</a></li>
 							</ul>
@@ -28,14 +28,19 @@
                     </div>
                 </div>
             </div>
+            
+
         </div>
+
     </div><!-- end first panel -->    
 	
 	{{#if showDesigner}}
-    	{{tolaboard-layout dataSources=dataSources graphOptions=graphOptions}}
+    	{{tolaboard-layout tolaboard=tolaboard dataSources=dataSources graphOptions=graphOptions}}
     
     {{/if}}
 </div>
+
+
 
 
 

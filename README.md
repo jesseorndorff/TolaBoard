@@ -1,7 +1,8 @@
 # Tolaboard
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+WARNING: THIS APPLICATION IS CURRENTLY IN DEVELOPMENT, AND NOT COMPLETELY FUNCTIONAL. IT HAS NOT BEEN RELEASED TO PRODUCTION!
+
+TolaBoard is a tool for building dynamic data visualizations within TolaData. It's intention is to improve reporting and visualization of data inside TolaTables. The software introduces a new technology into the TolaData stack, namely, client-side based MVC using Ember.js.
 
 ## Prerequisites
 
@@ -22,8 +23,9 @@ You will need the following things properly installed on your computer.
 
 ## Running / Development
 
-* `ember server`
+* `ember server` 
 * Visit your app at [http://localhost:4200](http://localhost:4200).
+
 
 ### Code Generators
 

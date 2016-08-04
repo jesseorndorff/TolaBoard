@@ -109,15 +109,19 @@ h1,h2,h3,h4,h5,h6 {
 	border-radius: 2px;
 	box-shadow: 1px 2.5px 5px #ddd;
 }
+.gridster.immutable li {
+	cursor: pointer;
+}
 .widget-ui {
 	position: absolute;
 	right: 0px;
-	top: -15px;
+	top: 0px;
 	cursor: pointer;	
 }
 .widget-ui button {
 	border: 1px solid #888;
 	border-radius: 2px;
+	margin-top: 0px;
 }
 .builder-widget {
 	width: 1000px;
@@ -210,4 +214,55 @@ a.thumbnail:focus {
 	background-color: rgb(215, 215, 215);
 	vertical-align: top;
 }
+
+/* Gridster CSS */
+[data-col="7"] { left:905px; }
+ [data-col="6"] { left:755px; }
+ [data-col="5"] { left:605px; }
+ [data-col="4"] { left:455px; }
+ [data-col="3"] { left:305px; }
+ [data-col="2"] { left:155px; }
+ [data-col="1"] { left:5px; }
+ [data-row="18"] { top:2555px; }
+ [data-row="17"] { top:2405px; }
+ [data-row="16"] { top:2255px; }
+ [data-row="15"] { top:2105px; }
+ [data-row="14"] { top:1955px; }
+ [data-row="13"] { top:1805px; }
+ [data-row="12"] { top:1655px; }
+ [data-row="11"] { top:1505px; }
+ [data-row="10"] { top:1355px; }
+ [data-row="9"] { top:1205px; }
+ [data-row="8"] { top:1055px; }
+ [data-row="7"] { top:905px; }
+ [data-row="6"] { top:755px; }
+ [data-row="5"] { top:605px; }
+ [data-row="4"] { top:455px; }
+ [data-row="3"] { top:305px; }
+ [data-row="2"] { top:155px; }
+ [data-row="1"] { top:5px; }
+ [data-sizey="1"] { height:140px; }
+ [data-sizey="2"] { height:290px; }
+ [data-sizey="3"] { height:440px; }
+ [data-sizey="4"] { height:590px; }
+ [data-sizey="5"] { height:740px; }
+ [data-sizey="6"] { height:890px; }
+ [data-sizey="7"] { height:1040px; }
+ [data-sizey="8"] { height:1190px; }
+ [data-sizey="9"] { height:1340px; }
+ [data-sizey="10"] { height:1490px; }
+ [data-sizey="11"] { height:1640px; }
+ [data-sizey="12"] { height:1790px; }
+ [data-sizey="13"] { height:1940px; }
+ [data-sizey="14"] { height:2090px; }
+ [data-sizey="15"] { height:2240px; }
+ [data-sizey="16"] { height:2390px; }
+ [data-sizey="17"] { height:2540px; }
+ [data-sizex="1"] { width:140px; }
+ [data-sizex="2"] { width:290px; }
+ [data-sizex="3"] { width:440px; }
+ [data-sizex="4"] { width:590px; }
+ [data-sizex="5"] { width:740px; }
+ [data-sizex="6"] { width:890px; }
+
 

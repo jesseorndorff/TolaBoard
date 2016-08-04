@@ -1,11 +1,22 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-	model: function() {
+	model: function(params) {
 		// return Ember.$.getJSON('cars.json').then(function(data) {
 		var modelObj = {};
 		Ember.set(modelObj,'dataSources',[1,2,3]);
 		Ember.set(modelObj,'graphOptions',[]);
+
+		// get the board
+		var url = "assets/data/tolaboards/demo-board-" + 
+		          params.tolaboard_id + '.json';
+
+		Ember.set(modelObj, 'tolaboard', Ember.$.getJSON(url, function(data) {			
+			console.log('tolaboard data in designer',data);
+			return data;
+		}));		
+
+		
 
 		// first attempt... use static json file storing data sources
 		// this becomes a property on the model associated with the designer route

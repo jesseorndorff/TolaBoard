@@ -1,0 +1,33 @@
+{
+	"id": 0,
+	"title": "RRIMA Primary Dashboard",
+	"dashboard": [{"widget": {"col":4,"row":1,"size_x":3,"size_y":3},
+				   "graph": {"component": "graphs/test-graph", "data": [], 
+				   				 "config" : {"type": "bar",
+				   				 			 "data": {
+				   				 			 	"labels": ["A", "B", "C"],
+				   				 			 	"datasets": [{
+				   				 			 		"data": [34,23, 78],
+				   				 			 		"backgroundColor": "#00afaa"
+				   				 			 		}]
+				   				 			 	},
+				   				 			 	"options": {}
+				   				 		}
+				   				 	}
+				   		},
+
+				   	{"widget": {"col":1,"row":1,"size_x":3,"size_y":2},
+				   "graph": {"component": "graphs/test-graph", "data": [], 
+				   				 "config" : {"type": "bar",
+				   				 			 "data": {
+				   				 			 	"labels": ["X", "Y", "Z"],
+				   				 			 	"datasets": [{
+				   				 			 		"data": [34,34, 34],
+				   				 			 		"backgroundColor": "steelblue"
+				   				 			 		}]
+				   				 			 	},
+				   				 			 	"options": {}
+				   				 		}
+				   				 	}
+				   		}]
+}

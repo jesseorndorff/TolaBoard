@@ -8,6 +8,9 @@
 /node_modules
 /bower_components
 
+# data
+/public/assets/data/private
+
 # misc
 /.sass-cache
 /connect.lock

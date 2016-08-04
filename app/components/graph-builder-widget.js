@@ -12,12 +12,25 @@ export default Ember.Component.extend({
 	scopeGraphID: undefined,
 	scopeDataModel: {}, // holds the current selected graph metadata
 	scopeComponent: undefined,
-	
 
+	disableSave: true,
+	tolaGraph: {name: 'tolaGraph from tolagraph.js!!!'},
+
+
+	
+	didInsertElement: function() {
+		console.log('gbw didInsertElement invoked',this);
+	},
+	didRender: function() {
+		console.log('gbw didRender invoked');
+	},
+	
+	
 	actions: {
 
 		toggleDataSourcePreview: function() { 
-			this.toggleProperty('showDataSourcePreview');
+			this.toggleProperty('showDataSourcePreview');			
+
 		},		
 		
 		getData: function(source) {
@@ -29,7 +42,7 @@ export default Ember.Component.extend({
 
 			// this is working... updating scopeData property in callback
 			Ember.$.getJSON(url, function(data) { 					
-				self.set('scopeData', data.splice(0,25));
+				self.set('scopeData', data.splice(0,200));
 				self.get('scopeData').map(function(d) { 
 					delete d.name;
 					delete d.spouse;
@@ -59,8 +72,8 @@ export default Ember.Component.extend({
 		},
 
 		tryGraphRender: function(dataModelField, selectedField) {
-			console.log('tryGraphRender invoked');
-			console.log(this);
+			/*console.log('tryGraphRender invoked');
+			console.log(this);*/
 			// called when a user defines or changes a graph input field
 
 			// first figure out if there's an existing graph, if so, remove it
@@ -68,12 +81,8 @@ export default Ember.Component.extend({
 				// should destroy existing component... calls willDestroyElement
 				// this.set('scopeComponent',undefined);	
 				// console.log('renderGraph now being set to false');
-				this.toggleProperty('renderGraph');
-				// this.set('scopeComponent',undefined);
+				this.toggleProperty('renderGraph');				
 				
-
-				
-
 			}
 
 			// update the data model with assignments
@@ -87,10 +96,13 @@ export default Ember.Component.extend({
 			               	});
 
 			if(requiredFields.indexOf("") === -1) {			
-				console.log('renderGraph now being set to true');
+				// console.log('renderGraph now being set to true');
 				// this.set('renderGraph',true);
 				var self = this;
-				setTimeout(function() { self.toggleProperty('renderGraph'); }, 250)
+				setTimeout(function() { 
+					self.toggleProperty('renderGraph'); 
+				}, 250);
+				this.toggleProperty('disableSave');
 				// this.set('scopeComponent','graphs/chartjs-bar');	
 				// this.set('scopeComponent', this.get('graphOptions')[this.scopeGraphID].component);
 				// this.actions.showGraphDataModel(this.get('graphOptions')[this.scopeGraphID]);
@@ -100,17 +112,23 @@ export default Ember.Component.extend({
 
 		},
 
-		saveGraph: function() {
-			console.log('current graph and target li');
-			console.log(this.get('graphTarget'));
+		clearGraphBuilder: function() {
 
-
-			// place copy of graph into li
-			// current-builder-widget-graph
-			/*Ember.$.('current-builder-widget-graph');*/
-			// Ember.$(this.get('graphTarget')).append(Ember.$('#current-builder-widget-graph').clone());
-
-
+			this.set('showDataSourcePreview', false);
+			this.set('showVizSelection', false);
+			this.set('showDataModel', false);
+			this.set('renderGraph', false);		
+			this.set('scopeData', []);
+			this.set('scopeGraphID', undefined);
+			this.set('scopeDataModel', {});
+			this.set('scopeComponent', undefined);
+			this.set('disableSave', true);
+		},
+		
+		updateBoardItem: function() {
+			// console.log('attempt to send new updateBoardItem');
+			this.sendAction('updateSaveBoardItem', this.get('tolaGraph'));
+			// this.sendAction('updateBoardItem');
 		}
 
 		
