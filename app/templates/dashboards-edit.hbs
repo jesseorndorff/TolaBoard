@@ -13,10 +13,11 @@
 							{{render-tolaboard-item itemMutable=true tbItemConfig=tbItem}}	
 						{{/each}}
 					</ul>
-				</div>				
+				</div>			
+				<!-- Re-using our graph builder widget inside the edit -->	
 				{{#if showGraphBuilder}}
 					{{graph-builder-widget 
-						dataSources=dataSources 
+						dataSources=dataSources  
 						graphOptions=graphOptions 
 						tolaGraphConfig=tolaGraphConfig
 						updateSaveBoardItem='updateSaveBoardItem'}}

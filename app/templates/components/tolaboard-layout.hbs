@@ -18,20 +18,20 @@
 						<ul><!-- gridster stuff -->
 							<!-- This is for new tolaboards, or tolaboard_id == 0 -->
 							
-						  		{{#each tolaboardItems as |item|}}
+						  		<!-- {{#each tolaboardItems as |item|}}
 							    	{{tolaboard-item index=item 
 							      	  removeItem='removeItem'
 							      	  setActiveItem='setActiveItem'
 									}}
-						  		{{/each}}
+						  		{{/each}} -->
 					  		
 
 					  		<!-- This is for existing tolaboards, or tolaboard_id == valid id -->
-					  		{{#if tbExist}}
-						  		{{#each model.dashboard as |tbItem|}}					
+					  		<!-- {{#if tbExist}} -->
+						  		{{#each model.tolaboard.responseJSON.dashboard as |tbItem|}}					
 									{{render-tolaboard-item itemMutable=true tbItemConfig=tbItem}}	
 								{{/each}}
-							{{/if}}
+							<!-- {{/if}} -->
 					</ul>
 					</div>
 					
@@ -47,10 +47,9 @@
 					-->
 					{{#if showGraphBuilder}}
 						{{graph-builder-widget 
-							dataSources=dataSources 
-							graphOptions=graphOptions 
-							tolaGraphConfig=tolaGraphConfig
-							updateSaveBoardItem='updateSaveBoardItem'					}}
+							dataSources=model.dataSources 
+							graphOptions=model.graphOptions 
+							updateSaveBoardItem='updateSaveBoardItem'}}
 					{{/if}}
 				</div>
 					

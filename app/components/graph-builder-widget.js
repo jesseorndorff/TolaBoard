@@ -29,7 +29,13 @@ export default Ember.Component.extend({
 	actions: {
 
 		toggleDataSourcePreview: function() { 
-			this.toggleProperty('showDataSourcePreview');			
+			this.toggleProperty('showDataSourcePreview');
+
+			var tolagraphConfig = {
+				// dataSource: this.
+			};
+
+			var tolagraph = Tolagraph.create()
 
 		},		
 		
@@ -72,6 +78,8 @@ export default Ember.Component.extend({
 		},
 
 		tryGraphRender: function(dataModelField, selectedField) {
+
+
 			/*console.log('tryGraphRender invoked');
 			console.log(this);*/
 			// called when a user defines or changes a graph input field
@@ -129,9 +137,20 @@ export default Ember.Component.extend({
 			// console.log('attempt to send new updateBoardItem');
 			this.sendAction('updateSaveBoardItem', this.get('tolaGraph'));
 			// this.sendAction('updateBoardItem');
-		}
+		}		
+		
+	}, // end actions
 
-		
-		
+	buildTolagraph: function() {
+		// take existing definitions, and create a tolagraph instance
+
+		var config = {
+
+			dataSource: this.scopeData,
+			component: this.scopeComponent,
+
+
+		};
 	}
+
 });

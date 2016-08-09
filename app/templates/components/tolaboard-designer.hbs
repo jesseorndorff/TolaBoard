@@ -1,48 +1,89 @@
-<div class="container">
-<div class="panel panel-default tb-designer-header">
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>TolaBoard Designer</h3>
-                </div>
+<!-- View to create/define new dashboard -->
+<section class="create-view">
+    <div class="container">
+        <div class="panel panel-default tb-designer-header">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3>TolaBoard Designer</h3>
+                        </div>
 
-                <div class="col-md-6 col-md-offset-2">
-                    <div class="btn-group" role="group">
-                        <div class="btn-group">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							    Edit TolaBoard
-							    <span class="caret"></span>
-							</button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							    <li><a href="/mydashboards">Weekly Snapshot</a></li>
-					            <li><a href="/dashboards-edit/1">RRIMA Primary Dashboard</a></li>
-					            <li><a href="/mydashboards">Refugee Flow</a></li>
-					            <li><a href="/mydashboards">Program Analytics and Insights</a></li>
-							</ul>
+                        <div class="col-md-6 col-md-offset-2">
+                            <div class="btn-group" role="group">
+                                <div class="btn-group">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Edit TolaBoard
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a href="/mydashboards">Weekly Snapshot</a></li>
+                                        <li><a href="/dashboards/1">RRIMA Primary Dashboard</a></li>
+                                        <li><a href="/mydashboards">Refugee Flow</a></li>
+                                        <li><a href="/mydashboards">Program Analytics and Insights</a></li>
+                                    </ul>
+                                </div>
+                                <div class="btn-group">
+                                    <button {{action 'createNewBoard'}} class="btn btn-tola-accent">New TolaBoard</button>
+                                    
+                                </div>
+                                
+                            </div>
                         </div>
-                        <div class="btn-group">
-                            <button {{action 'toggleNewBoard'}} class="btn btn-tola-accent">New TolaBoard</button>
-                            
-                        </div>
-                        
                     </div>
                 </div>
-            </div>
+            </div><!-- end first panel -->    
             
-
-        </div>
-
-    </div><!-- end first panel -->    
-	
-	{{#if showDesigner}}
-    	{{tolaboard-layout tolaboard=tolaboard dataSources=dataSources graphOptions=graphOptions}}
     
-    {{/if}}
-</div>
+        <div class="panel panel-default tb-designer-header">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">         
+                        <div class="tolaboard-save">
+                            <button class="btn btn-default">Clear</button>
+                            <button class="btn btn-success">Save</button>
+                        </div>
+                        <div class="design-window">
+                        
+                        <button class="btn btn-default" {{action 'addItem' on='click'}}>Add Component</button>
+                        
+                        
+                        <div class="gridster">
+                            <ul><!-- gridster stuff -->
+                            <!-- new approach model can have tolaboard if id passed into route via dynamic model aslo can get defined by creating new tb
+                            with buttons -->
+                            
+                            {{#each model.items as |tbItem|}}                                
+                                {{render-tolaboard-item itemMutable=true tbItemConfig=tbItem}}  
+                            {{/each}}
+                            
+                            </ul>
+                        </div>
+                        
+                        
+                                    
+                            <!-- Single instance of this component shared across tolaboard-item components.. triggered by modal which is activated by the edit button (pencil) in the tolaboard-item component template
 
+                            Passed in by tolaboard-designer:
+                                         dataSources
+                                         graphOptions
+                                         itemHome
 
-
-
-
-
-
+                            Defined in this component:
+                            saveTolaBoard - passed to builder widget
+                                    -->
+                            {{#if showGraphBuilder}}
+                                {{graph-builder-widget 
+                                   dataSources=model.dataSources 
+                                   graphOptions=model.graphOptions 
+                                   updateSaveBoardItem='updateSaveBoardItem'}}
+                            {{/if}}
+                        </div>
+                                    
+                    </div>
+                </div>
+                        
+            </div>
+        </div>
+    
+    </div>
+</section>

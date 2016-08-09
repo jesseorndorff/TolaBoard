@@ -1,20 +1,33 @@
 import Ember from 'ember';
 
+
+
 export default Ember.Component.extend({
 
 	self: this,
 	showGraphBuilder: false,
+	tolaboard: function() {
+		return this.get('model').tolaboard.responseJSON;
+	},
+
 	/* array of tolaboard-items (ie. gridster widgets) */
-	tolaboardItems: [],
+	tolaboardItems: function() {
+		return this.get('model').tolaboard.responseJSON.dashboard;
+	},
+
 	activeGraphBuilder: [],
 	graphTarget: [],
 
 
 
+
 	didInsertElement: function() {
-		console.log('tolaboard from layout comp',this.get('tolaboard'));
-		/*console.log('layout Component');
-		console.log(this);*/
+		console.log('model passed to layout component',this.get('model'));
+		console.log('tolaBoardItems',this.get('tolaboardItems'))
+
+		// new tolaboard
+		/*var tBoard = Tolaboard.create();
+		console.log('new tBoard',tBoard);*/
 
 	},
 
@@ -48,13 +61,14 @@ export default Ember.Component.extend({
 	actions: {				
 		addItem: function() {			
 			// push item into tolaboardItems array
-			var newID = this.tolaboardItems.length;
-			this.tolaboardItems.pushObject(newID);
+			/*var newID = this.tolaboardItems.length;
+			this.tolaboardItems.pushObject(newID);*/
 			
 			// just toggle showGraphBuilder once
-			if(!this.showGraphBuilder) { 
+			/*if(!this.showGraphBuilder) { 
 				this.set('showGraphBuilder',true);
-			}
+			}*/
+			console.log('currBoard',this.get('currBoard'));
 		},
 		removeItem: function(index) {			
 			// push item into tolaboardItems array			

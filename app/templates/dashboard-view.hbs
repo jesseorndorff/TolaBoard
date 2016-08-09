@@ -1,0 +1,25 @@
+<section id="current-dashboard">	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- The dashboard route contains a dynamic segment that represents an id to obtain a partiuclar persisted tolaboard. The dashboard property on the tolaboard data contains an array of objects. Each object has a gridster component and a graph component
+
+				The model is a single tolaboard, and we will use model.dashboard in a "for each" block to render each tolaboard item in the dashboard... using render-tolaboard-item component				
+
+				It's kinda odd that we have the gridster ul dom elements here, but we need that wrapper. Ideally, components live on their own, and are independent of the outside, but here, the .gridster ul selector is needed for the gridster api used in the render component..hmm
+
+				How could it be different... like self-contained? Perhaps a render-tolaboard component which calls render-tolaboard-item component? This just encapsulates the problem... just making note of it for now.
+
+			-->
+				<h2>{{model.title}}</h2>
+				<div class="gridster">
+					<ul>
+						{{#each model.dashboard as |tbItem|}}					
+							{{render-tolaboard-item itemMutable=false tbItemConfig=tbItem}}	
+						{{/each}}
+					</ul>
+				</div>				
+			</div>
+		</div>
+	</div>
+</section>
