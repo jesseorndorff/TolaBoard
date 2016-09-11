@@ -46,14 +46,26 @@
                         
                         <button class="btn btn-default" {{action 'addItem' on='click'}}>Add Component</button>
                         
-                        
+                        <h2>{{model.title}}</h2>
                         <div class="gridster">
                             <ul><!-- gridster stuff -->
                             <!-- new approach model can have tolaboard if id passed into route via dynamic model aslo can get defined by creating new tb
                             with buttons -->
                             
-                            {{#each model.items as |tbItem|}}                                
-                                {{render-tolaboard-item itemMutable=true tbItemConfig=tbItem}}  
+                            <!-- render is responsible for displaying an item, and it's also responsible for letting
+                                 tb-designer know which item is 'active' by setting the value, so it can be passed
+                                 to the gbw component below -->
+                            {{#each model.dashboard.items as |tbItemConfig index|}}                                
+                                {{render-tolaboard-item index=index
+                                itemMutable=true tbItemConfig=tbItemConfig 
+                                model=model
+                                activateGraphBuilder='activateGraphBuilder'
+                                setActiveWidget='setActiveWidget'
+                                setActiveElement='setActiveElement'
+                                setActiveIndex='setActiveIndex'
+                                removeTBItem='removeItem'
+                                setActiveTBItemConfig='setActiveTBItemConfig'
+                                }}  
                             {{/each}}
                             
                             </ul>
@@ -71,12 +83,7 @@
                             Defined in this component:
                             saveTolaBoard - passed to builder widget
                                     -->
-                            {{#if showGraphBuilder}}
-                                {{graph-builder-widget 
-                                   dataSources=model.dataSources 
-                                   graphOptions=model.graphOptions 
-                                   updateSaveBoardItem='updateSaveBoardItem'}}
-                            {{/if}}
+
                         </div>
                                     
                     </div>

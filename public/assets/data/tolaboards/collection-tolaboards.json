@@ -1,22 +1,91 @@
 {
 	"dashboards": [{"id": 1,
-					"title": "RRIMA Primary Dashboard",
-					"items": [{"widget": {"col":4,"row":1,"size_x":3,"size_y":3},
-				  			   "graph": {"component": "graphs/test-graph", "data": [], 
-				   				 "config" : {"type": "bar",
-				   				 			 "data": {
-				   				 			 	"labels": ["A", "B", "C"],
-				   				 			 	"datasets": [{
-				   				 			 		"data": [34,23, 78],
-				   				 			 		"backgroundColor": "#00afaa"
-				   				 			 		}]
-				   				 			 	},
-				   				 			 	"options": {}
-				   				 		}
-				   				 	}
-				   		},
+					"title": "RRIMA Dashboard",
+					"items": [{
+	"title": "Place of Origin",
+	"widget": {
+		"col": 1,
+		"row": 1,
+		"size_x": 3,
+		"size_y": 2
+	},
+	"graph": {
+		"component": "graphs/chartjs-pie",
+		"dataModel": [{
+			"name": "group",
+			"label": "Group",
+			"multiple": false,
+			"type": "All",
+			"required": true,
+			"assigned": ["origin"]
+		}, {
+			"name": "size",
+			"label": "Metric",
+			"multiple": false,
+			"type": "Number",
+			"required": true,
+			"assigned": ["total_beneficiary_count"]
+		}],
+		"dataSource": {
+			"sourceId": 1
+		},
+		"config": {
+			"type": "pie",
+			"data": {
+				"labels": [],
+				"datasets": [{
+					"data": [],
+					"backgroundColor": "#00afaa"
+				}]
+			},
+			"options": {}
+		}
+	}
+},{
+	"title": "Beneficiaries by District",
+	"widget": {
+		"col": 4,
+		"row": 1,
+		"size_x": 3,
+		"size_y": 2
+	},
+	"graph": {
+		"component": "graphs/test-graph",
 
-				   	{"widget": {"col":1,"row":1,"size_x":3,"size_y":2},
+		"dataSourceId": 1,
+		"dataModel": [{
+			"name": "group",
+			"label": "Group",
+			"multiple": false,
+			"type": "All",
+			"required": true,
+			"assigned": ["district"]
+		}, {
+			"name": "size",
+			"label": "Metric",
+			"multiple": false,
+			"type": "Number",
+			"required": true,
+			"assigned": ["total_beneficiary_count"]
+		}],
+		"dataSource": {
+			"sourceId": 1
+		},
+		"config": {
+			"type": "pie",
+			"data": {
+				"labels": [],
+				"datasets": [{
+					"data": [],
+					"backgroundColor": "#00afaa"
+				}]
+			},
+			"options": {}
+		}
+	}
+},
+
+				   		{"widget": {"col":1,"row":4,"size_x":6,"size_y":4},
 				   "graph": {"component": "graphs/test-graph", "data": [], 
 				   				 "config" : {"type": "bar",
 				   				 			 "data": {
@@ -32,20 +101,30 @@
 				   		}]},
 				   {"id": 2,
 					"title": "Beneficiary Dashboard",
-					"items": [{"widget": {"col":4,"row":1,"size_x":3,"size_y":3},
-				  			   "graph": {"component": "graphs/test-graph", "data": [], 
-				   				 "config" : {"type": "bar",
-				   				 			 "data": {
-				   				 			 	"labels": ["A", "B", "C"],
-				   				 			 	"datasets": [{
-				   				 			 		"data": [3,2, 7],
-				   				 			 		"backgroundColor": "#00afaa"
-				   				 			 		}]
-				   				 			 	},
-				   				 			 	"options": {}
-				   				 		}
-				   				 	}
-				   		},
+					"items": [{
+	"widget": {
+		"col": 4,
+		"row": 1,
+		"size_x": 4,
+		"size_y": 3
+	},
+	"graph": {
+		"component": "graphs/test-graph",
+		"dataSourceId": 1,
+		"data": [],
+		"config": {
+			"type": "bar",
+			"data": {
+				"labels": ["Jan", "Feb", "Mar"],
+				"datasets": [{
+					"data": [3, 2, 7],
+					"backgroundColor": "#00afaa"
+				}]
+			},
+			"options": {}
+		}
+	}
+},
 
 				   	{"widget": {"col":1,"row":1,"size_x":3,"size_y":2},
 				   "graph": {"component": "graphs/test-graph", "data": [], 

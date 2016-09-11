@@ -9,7 +9,9 @@
           </button>
           <a class="navbar-brand" href="/mydashboards">            
             <span class="tola-brand"><i class="fa fa-line-chart"></i> TolaBoard</span></a>
+            <img class="alpha-logo" src="assets/images/alpha-test-logo.png">
         </div>
+        {{#if authUser}}
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="dropdown">
@@ -35,6 +37,7 @@
 			  
           </ul>
         </div><!--/.nav-collapse -->
+        {{/if}}
       </div>
 </nav>
 <div class="nav-spacer"></div>

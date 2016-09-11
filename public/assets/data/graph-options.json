@@ -1,18 +1,128 @@
-[{"id":0, "label": "Bar Graph", 
-  "img": "assets/images/graph-library/builder-bar.png",
-  "component": "graphs/chartjs-bar",
-  "dataModel": [{"field": {"name":"group", "label":"Group", "assigned":""}, "name": "group", "label": "Group", "multiple": false, "type": "all", "required": true},                  
-                {"field": {"name":"size", "label":"Metric", "assigned":""}, "name": "size", "label": "Metric", "multiple": false, "type": "number", "required": true}
-                ]},
-
- {"id":1, "label": "Pie Graph", "img": "assets/images/graph-library/builder-pie.png", 
- "component": "graphs/chartjs-pie", "dataModel": [{"field": {"name":"group", "label":"Group", "assigned":""}, "name": "group", "label": "Metric", "multiple": false, "type": "all", "required": true}, {"field": {"name":"size", "label":"metric", "assigned":""}, "name": "size", "label": "Metric", "multiple": false, "type": "number", "required": true}]}, 
- {"id":2, "label": "Map", "img": "assets/images/graph-library/builder-map.png", 
- "component": "graphs/leaflet-map", "dataModel": [{"field": {"name":"latitiude", "label":"Latitiude", "assigned":""}, "name": "lat", "label": "Latitiude", "multiple": false, "type": "latlong", "required": true}, {"field": {"name":"longitude", "label":"Longitude", "assigned":""}, "name": "lng", "label": "Longitude", "multiple": false, "type": "latlong", "required": true},{"field": {"name":"size", "label":"Metric", "assigned":""}, "name": "size", "label": "Measure", "multiple": false, "type": "number", "required": false}]},
- 
- {"id":3, "label": "Line Graph", "img": "assets/images/graph-library/builder-line.png", 
- "component": "graphs/chartjs-pie", "dataModel": [{"field": {"name":"group", "label":"Group", "assigned":""}, "name": "group", "label": "Metric", "multiple": false, "type": "all", "required": true}, {"field": {"name":"size", "label":"metric", "assigned":""}, "name": "size", "label": "Metric", "multiple": false, "type": "number", "required": true}]}, 
- {"id":4, "label": "Bubble Graph", "img": "assets/images/graph-library/builder-scatter.png", 
- "component": "graphs/chartjs-pie", "dataModel": [{"field": {"name":"group", "label":"Group", "assigned":""}, "name": "group", "label": "Metric", "multiple": false, "type": "all", "required": true}, {"field": {"name":"size", "label":"metric", "assigned":""}, "name": "size", "label": "Metric", "multiple": false, "type": "number", "required": true}]}, 
- {"id":5, "label": "Table Graph", "img": "assets/images/graph-library/builder-table.png", 
- "component": "graphs/chartjs-pie", "dataModel": [{"field": {"name":"group", "label":"Group", "assigned":""}, "name": "group", "label": "Metric", "multiple": false, "type": "all", "required": true}, {"field": {"name":"size", "label":"metric", "assigned":""}, "name": "size", "label": "Metric", "multiple": false, "type": "number", "required": true}]}]
+{
+	"graph-options": [{
+		"id": 1,
+		"label": "Bar Graph",
+		"img": "assets/images/graph-library/builder-bar.png",
+		"component": "graphs/chartjs-bar",
+		"dataModel": [{
+			"name": "group",
+			"label": "Group",
+			"multiple": false,
+			"type": "All",
+			"required": true,
+			"assigned": []
+		}, {
+			"name": "size",
+			"label": "Metric",
+			"multiple": false,
+			"type": "Number",
+			"required": true,
+			"assigned": []
+		}]
+	},
+	{
+		"id": 2,
+		"label": "Pie Graph",
+		"img": "assets/images/graph-library/builder-pie.png",
+		"component": "graphs/chartjs-pie",
+		"dataModel": [{
+			"name": "group",
+			"label": "Group",
+			"multiple": false,
+			"type": "All",
+			"required": true,
+			"assigned": []
+		}, {
+			"name": "size",
+			"label": "Metric",
+			"multiple": false,
+			"type": "Number",
+			"required": true,
+			"assigned": []
+		}]
+	},
+	{
+		"id": 3,
+		"label": "Geo Map",
+		"img": "assets/images/graph-library/builder-map.png",
+		"component": "graphs/chartjs-geomap",
+		"dataModel": [{
+			"name": "group",
+			"label": "Latitude",
+			"multiple": false,
+			"type": "All",
+			"required": true,
+			"assigned": []
+		}, {
+			"name": "size",
+			"label": "Longitude",
+			"multiple": false,
+			"type": "Number",
+			"required": true,
+			"assigned": []
+		},{
+			"name": "size",
+			"label": "Metric",
+			"multiple": false,
+			"type": "Number",
+			"required": true,
+			"assigned": []
+		}]
+	},
+	{
+		"id": 4,
+		"label": "Bubble Graph",
+		"img": "assets/images/graph-library/builder-scatter.png",
+		"component": "graphs/chartjs-geomap",
+		"dataModel": [{
+			"name": "group",
+			"label": "Horizontal Axis",
+			"multiple": false,
+			"type": "All",
+			"required": true,
+			"assigned": []
+		}, {
+			"name": "size",
+			"label": "Vertical Axis",
+			"multiple": false,
+			"type": "Number",
+			"required": true,
+			"assigned": []
+		},{
+			"name": "size",
+			"label": "Metric",
+			"multiple": false,
+			"type": "Number",
+			"required": true,
+			"assigned": []
+		},
+		{
+			"name": "size",
+			"label": "Color Group",
+			"multiple": false,
+			"type": "Number",
+			"required": true,
+			"assigned": []
+		}]
+	},{
+		"id": 5,
+		"label": "Line Graph",
+		"img": "assets/images/graph-library/builder-line.png",
+		"component": "graphs/chartjs-geomap",
+		"dataModel": [{
+			"name": "group",
+			"label": "Horizontal Axis",
+			"multiple": false,
+			"type": "All",
+			"required": true,
+			"assigned": []
+		}, {
+			"name": "size",
+			"label": "Vertical Axis",
+			"multiple": false,
+			"type": "Number",
+			"required": true,
+			"assigned": []
+		}]
+	}]
+}

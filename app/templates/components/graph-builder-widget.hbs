@@ -11,19 +11,27 @@
 	      </div>
 	      <div class="modal-body">
 	      	<div class="container-fluid">
+
 	        <div id="data-source-select" class="row dropdown">
+	        	<!-- <h5>Select a Data Source</h5>
+				<select name="ds-name" onchange={{action 'getData' value="target.value"}}  class="form-control">
+					<option></option>
+				{{#each model.datasources as |source|}}
+					<option value={{source.url}}>{{source.label}}</option>
+				{{/each}}
+				</select> -->
+				
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					    Select a Data Source
 					    <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu">
-					  	{{#each dataSources as |source|}}
+					  </button>					  
+					  <ul class="dropdown-menu">					  	
+					  	{{#each model.datasources as |source|}}
 					  		<li {{action 'getData' source}}>
 					  			<a href="">{{source.label}}</a>
 					  		</li>
 					  	{{/each}}	
-					  		<!-- always show ad-hoc -->
-					  		<li><a href="">Ad hoc (not persisted)</a></li>				    
+					  		
 					  </ul>
 			</div>
 			<!-- Uses json-2-table component to table-ize data -->
@@ -34,6 +42,17 @@
 				{{json-2-table displayData=scopeData showVizSelection=showVizSelection}}
 			</div>
 			{{/if}}
+
+			
+				<div class="row">
+					<div class="col-md-12">
+				  		<div style="margin-top: 20px;">
+							<h4>Add Filters to Data Selection (Optional)</h4>
+						</div>
+					</div>
+				</div>
+				<button>Add Filter</button>
+			
 
 			{{#if showVizSelection}}
 
@@ -60,32 +79,32 @@
 
 			<!-- Show this area when a viz type is selected -->
 			{{#if showDataModel}}
-			<div class="animated fadeIn">
+			<div class="row animated fadeIn">
 				<h4  style="margin-top: 20px;">Specify a data field for each required input</h4>
 				
 				
-				{{#each scopeDataModel as |dataModel|}}  	
-				<div class="btn-group">
-					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    {{dataModel.field.label}} <span class="caret"></span>
-				 </button>
-
-					<ul class="dropdown-menu field-select">
-						<!-- iterate over column names -->
-						{{#each-in scopeData.[0] as |colName|}}
-							<li {{action 'tryGraphRender' dataModel.field.name colName}}>{{colName}}</li>
-						{{/each-in}}
-					</ul>
-				</div>
+				{{#each scopeDataModel as |fieldInput|}}
+					<div class="data-model-input">
+						<h5>{{fieldInput.label}}:</h5>
+							<select name={{fieldInput.name}} onchange={{action 'tryGraphRender' value="target.value" }} class="form-control">
+								{{#each-in scopeData.[0] as |colName index|}}
+									<option value={{colName}}>{{colName}}</option>
+								{{/each-in}}
+							</select>
+					</div>
 				{{/each}}				
-
-
-				<!-- Moment of truth... graph time!! -->
-				{{#if renderGraph}}
-					{{component scopeComponent scopeData=scopeData scopeDataModel=scopeDataModel graphConfig=graphConfig}}
-				{{/if}}			
+				
+				
+				
 			</div>
 			{{/if}}
+
+			<!-- Moment of truth... graph time!! -->
+			{{#if renderGraph}}
+			<div class="row">
+				{{component scopeComponent scopeData=scopeData scopeDataModel=scopeDataModel graphConfig=graphConfig}}
+			</div>
+			{{/if}}				
 			
 			
 	      </div>

@@ -12,16 +12,19 @@ export default Ember.Component.extend({
 		console.log('this inside comp prop',this);
 		return this.get('tbItemConfig').graph.component
 	},*/
+	showGraphBuilder: false,
 
 
 	didInsertElement:  function() {
+
+		// console.log('render item index:',this.get('index'));
 	
 		/* Same issue here as with tolaboard-item component. Using the higher level API
 		   doesn't work for ember because it appends the li to the ".gridster ul" selector.
 		   Need to append to ember view piece by piece like in tb-item
 	
 		   */
-		console.log('render component this',this);
+		// console.log('render component this',this);
 		var el = Ember.$(this.get('element'));
 
 		var grid = Ember.$('.gridster ul');
@@ -75,6 +78,7 @@ export default Ember.Component.extend({
 		// console.log('grid ', grid);
 		
 		grid.$widgets = grid.$widgets.add(thisView);
+		console.log('grid widgets',grid.$widgets);
 
 		// register
 		grid.register_widget($(thisView));
@@ -92,7 +96,7 @@ export default Ember.Component.extend({
         	rendered entirely before assign a value to the scopeGraph. Otherwise, 
         	the component graph for this particular renders using 100% window width
         	instead of the width of the widget. */
-        this.set('scopeGraph', this.get('tbItemConfig').graph.component);
+        // this.set('scopeGraph', this.get('tbItemConfig').graph.component);
 		
 	},
 
@@ -116,6 +120,11 @@ export default Ember.Component.extend({
 		     .remove_widget(removeEl, function() {
 		     	// add any logic needed after widget removed here if applicable
 		      });
+
+		// we also need to remove the item from our items array maintained
+		// in tolaboard-designer
+		this.sendAction('removeTBItem',this.get('index'));
+
 	},
 	
 	/* didDestroyElement destroys the underlying Ember object representing the component.
@@ -130,6 +139,20 @@ export default Ember.Component.extend({
 	},
 
 	actions: {
+		
+		activateGraphBuilder: function() {
+			/*console.log('tbItem:',this.get('tbItemConfig'));
+			console.log('widget',this.get('tbItemConfig').widget);
+			console.log('thisView',this.get('element').childNodes[0]);*/
+
+			// this.sendAction('activateGraphBuilder');
+			this.set('showGraphBuilder',true);
+
+			this.sendAction('setActiveTBItemConfig',this.get('tbItemConfig'));
+			this.sendAction('setActiveElement',this.get('element').childNodes[0]);
+			this.sendAction('setActiveIndex',this.get('index'));
+			// this.sendAction('setActiveWidget','fooWidget');
+		},
 		/* runGraphBuilderWidget action is called by the edit button, if applicable. 
 		   This is currently only the case for the designer component. */
 		runGraphBuilderWidget: function() { 
@@ -142,13 +165,10 @@ export default Ember.Component.extend({
 			console.log('appendContent', tolagraph);
 		},*/
 		deleteWidget: function() {
+			console.log(this);
 			/* deleteWidget - as with runGraphBuilderWidget, only needed in edit mode when
 			   the trashcan button is available. This action destroys the component */
-			this.destroyElement();
-			
-			
-
-			
+			this.destroyElement();		
 			
 
 		}

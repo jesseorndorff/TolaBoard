@@ -11,8 +11,8 @@ export default Ember.Component.extend({
 	},*/
 	didInsertElement: function() {
 
-		console.log('tb-item didInsertElement invoked');
-		console.log('index of item is ', this.get('index'));
+		/*console.log('tb-item didInsertElement invoked');
+		console.log('index of item is ', this.get('index'));*/
 		/* Gridster meets Ember
 		Kinda tricky because gridster likes adding the html, for 3 reasons..
 		1. adds data attrs so css knows how to size grids
@@ -75,7 +75,7 @@ export default Ember.Component.extend({
 	},
 
 	didRender: function() { 
-		console.log('tb-item didRender invoked'); 
+		// console.log('tb-item didRender invoked'); 
 		
 	},
 	willDestroyElement: function() { 

@@ -1,2 +1,14 @@
-<h5>dashboards route</h5>
+<!-- Basic structure
+	component: tolaboard-designer
+		model: datasources - needed by graph-builder-widget
+			   graphOptions - needed by graph-builder-widget
+			   dashboard - used to get array of items for render-tolaboard-item component
+
+		children: 
+			component: render-tolaboard-item
+			model usage: model.dashboards
+
+			children:
+				component: graph-builder-widget (needs datasource, graphoptions and, if exists, tb item config)
+  -->
 {{tolaboard-designer model=model}}

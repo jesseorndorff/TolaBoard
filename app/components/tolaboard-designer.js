@@ -8,6 +8,8 @@ var TBoard = Ember.Object.extend({
 export default Ember.Component.extend({	
 	showDesigner: false,
 	showGridLayout: false,
+	showGraphBuilder: false,
+	foo: {bar:34},
 
 	currentDashboard: function() {
 		return this.get('model').testTB;
@@ -19,7 +21,8 @@ export default Ember.Component.extend({
 
 	/* fires when tolaboard-designer.hbs has loaded */
 	didInsertElement: function() {	
-		console.log('tb-designer object',this);	
+		// console.log('tb-designer object',this);	
+
 		// see if model contains valid tolaboard
 		// MODEL HASN'T RETURNED BEFORE VIEW RENDERED AND THIS METHOD RUN
 		// WE NEED MODEL TO BE AVAILABLE FIRST		
@@ -52,8 +55,8 @@ export default Ember.Component.extend({
 	   getSerializedGraphs - ditto but for tolagraphs
 	*/
 	saveTolaBoard: function() {
-		console.log('serialize and persist tolaboard');
-		console.log(this.getSerializedWidgets());
+		/*console.log('serialize and persist tolaboard');
+		console.log(this.getSerializedWidgets());*/
 		},
 
 	getSerializedWidgets: function() {
@@ -82,26 +85,63 @@ export default Ember.Component.extend({
 			// if new or existing exists, prompt, save, wipe out and call createNewBoard
 		},
 
-		addItem: function() {			
+		addItem: function() {	
+			console.log('tb designer this',this);	
+			// console.log(this.get('model'));
+			/* if the dynamic segment for the route is 'new', then
+			   we have an emplty dashboard, with no items. Need to have items
+			   be an empty array in this case*/
+			// replace this with something that appends at bottom of existing grid	
+			var obj = {"widget": {"col":1,"row":1,"size_x":2,"size_y":2},
+				  	   "graph": {}
+				   	 	};
+
+
 			// push new dashboard item into model.items
-			var curItems = this.get('model').items;
-			console.log(curItems);
+			var curItems = this.get('model').dashboard.get('items');
+
+			console.log('curItems', curItems);
+			curItems.pushObject(obj);
+			
 		},
 		removeItem: function(index) {			
+			// console.log('removeItem index',index);
+			var curItems = this.get('model').dashboard.get('items');
+			// console.log('remove from curItems',curItems);
+			curItems.removeObject(curItems[index]);
 			// push item into tolaboardItems array			
 			// this.tolaboardItems.pushObject(newID);			
-			this.tolaboardItems.removeObject(index);
+			// this.tolaboardItems.removeObject(index);
 			// console.log('removeItem called by tb-item via sendAction');
 		},
-		setActiveItem: function(el) {
-			this.set('activeItem', el);
-			console.log('gbw open on ', Ember.$('#' + el));
+		/* this action needs passed into any child component which needs to display the
+		   graph builder widget */
+		activateGraphBuilder: function() {
+			if(!this.showGraphBuilder) { 
+				this.set('showGraphBuilder',true);				
+			}
+			/*console.log('current items:');
+			console.log(this.get('model').dashboard.get('items'));*/
+			
+		},
+
+		setActiveTBItemConfig: function(tbItemConfig) {
+			this.set('activeTBItemConfig', tbItemConfig);
+			console.log('tb-designer.activeTBItemConfig',this.get('activeTBItemConfig'));
+		},
+		setActiveElement: function(element) {
+			this.set('activeElement',element);
+			// console.log('tb-designer.element',element);
+		},
+		setActiveIndex: function(index) {
+			this.set('activeIndex',index);
+			// console.log('tb-designer.index',index);
 		},
 
 		updateSaveBoardItem: function(tolagraph) {
-			console.log('update li with tolagraph');
+			/*console.log('update li with tolagraph');
 			console.log(Ember.$('#' + this.get('activeItem') + ' li'));
-			console.log(tolagraph);
+			console.log(tolagraph);*/
 
 			// render the tolagraph in the active li
 			// update $tolagraphs object array

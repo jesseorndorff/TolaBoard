@@ -2,8 +2,45 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-	model: function(params) {		
-		return this.store.findRecord('dashboard',params.tolaboard_id);
+	
+	
+	/*model: function(params) {
+		// super easy hack, just use ajax calls, load into one big model
+		var modelObj = {};
+
+		Ember.$.getJSON('assets/data/data-sources.json', function(data) {			
+			Ember.set(modelObj,'dataSources',data);
+		});
+
+		Ember.$.getJSON('assets/data/graph-options.json', function(data) {
+			Ember.set(modelObj,'graphOptions',data);
+		});
+	}*/
+
+	// this one almost works and uses the store... figure out promises
+	model: function(params) {	
+
+		// always use Ember objects, not simple js ones
+		var modelObj = Ember.Object.create();
+
+		// data sources and graph options are same for all routes
+		modelObj.set('datasources',this.store.findAll('datasource'));
+		modelObj.set('graphOptions',this.store.findAll('graph-option'));
+
+		if(params.tolaboard_id !== 'new') {
+			
+			modelObj.set('dashboard',this.store.findRecord('dashboard',params.tolaboard_id));			
+		}
+		else {
+			// it's new... we need empty object to add items to
+			var dummyObj = Ember.Object.create();
+			dummyObj.set('items',[]);
+			modelObj.set('dashboard',dummyObj);
+		}
+
+		console.log('modelObj',modelObj);
+		return modelObj;
+		
 	}
 	/*model: function(params) {
 		

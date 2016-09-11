@@ -1,0 +1,12 @@
+{
+	"datasources": [{"id": 1, 
+	                  "label": "Izmir Beneficiary Database", 
+	                  "url": "assets/data/private/izmir-beneficiary-db.json"},
+	                 {"id": 2, 
+	                  "label": "Segovia Database", 
+	                  "url": ""},
+	                 {"id": 3, 
+	                  "label": "UNHCR", 
+	                  "url": ""}
+	                 ]
+}

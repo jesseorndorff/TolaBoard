@@ -14,7 +14,7 @@
 				<h2>{{model.title}}</h2>
 				<div class="gridster">
 					<ul>
-						{{#each model.dashboard as |tbItem|}}					
+						{{#each model.items as |tbItem|}}					
 							{{render-tolaboard-item itemMutable=false tbItemConfig=tbItem}}	
 						{{/each}}
 					</ul>

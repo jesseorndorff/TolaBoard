@@ -4,7 +4,7 @@ export default Ember.Component.extend({
 
 	didInsertElement: function() {
 
-		console.log('test graph el',this);
+		// console.log('test graph el',this);
 
 		var config = this.get('tbItemConfig').graph.config;
 
