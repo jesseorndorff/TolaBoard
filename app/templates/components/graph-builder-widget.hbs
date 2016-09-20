@@ -12,27 +12,14 @@
 	      <div class="modal-body">
 	      	<div class="container-fluid">
 
-	        <div id="data-source-select" class="row dropdown">
-	        	<!-- <h5>Select a Data Source</h5>
-				<select name="ds-name" onchange={{action 'getData' value="target.value"}}  class="form-control">
+	        <div class="row dropdown">
+	        	<h4>Select a Data Source</h4>
+				<select id="data-source-select" name="ds-name" onchange={{action 'getData' value="target.value" }}  class="form-control">
 					<option></option>
 				{{#each model.datasources as |source|}}
 					<option value={{source.url}}>{{source.label}}</option>
 				{{/each}}
-				</select> -->
-				
-					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					    Select a Data Source
-					    <span class="caret"></span>
-					  </button>					  
-					  <ul class="dropdown-menu">					  	
-					  	{{#each model.datasources as |source|}}
-					  		<li {{action 'getData' source}}>
-					  			<a href="">{{source.label}}</a>
-					  		</li>
-					  	{{/each}}	
-					  		
-					  </ul>
+				</select>					  
 			</div>
 			<!-- Uses json-2-table component to table-ize data -->
 			
@@ -43,15 +30,7 @@
 			</div>
 			{{/if}}
 
-			
-				<div class="row">
-					<div class="col-md-12">
-				  		<div style="margin-top: 20px;">
-							<h4>Add Filters to Data Selection (Optional)</h4>
-						</div>
-					</div>
-				</div>
-				<button>Add Filter</button>
+				
 			
 
 			{{#if showVizSelection}}
@@ -87,6 +66,7 @@
 					<div class="data-model-input">
 						<h5>{{fieldInput.label}}:</h5>
 							<select name={{fieldInput.name}} onchange={{action 'tryGraphRender' value="target.value" }} class="form-control">
+									<option value=""></option>
 								{{#each-in scopeData.[0] as |colName index|}}
 									<option value={{colName}}>{{colName}}</option>
 								{{/each-in}}
@@ -101,10 +81,52 @@
 
 			<!-- Moment of truth... graph time!! -->
 			{{#if renderGraph}}
+			<h6>renderGraph area</h6>
 			<div class="row">
+				<div class="col-md-8 gbw-graph">
 				{{component scopeComponent scopeData=scopeData scopeDataModel=scopeDataModel graphConfig=graphConfig}}
+				</div>
 			</div>
-			{{/if}}				
+			{{/if}}
+
+			<!-- Begin data filter section -->
+			{{#if showDataFilters}}
+				<div class="row">
+					<div class="col-md-12">
+				  		<div style="margin-top: 20px;">
+							<h4 style="float:left;">Add Filters (Optional)</h4>
+							<button style="margin-top:0;" class="btn btn-default" {{action 'addFilter'}}>Add Filter</button>
+						</div>
+					</div>
+				</div>				
+				<div class="data-filters">
+				{{#each filters as |filter|}}
+				<div class="row animated fadeIn">
+				  <div class="data-filters-row">
+					<select name="ds-name" onchange={{action 'updateFilter' value="target.value"}}  class="form-control data-filters-field">
+						<option>district</option>						
+						<option>age</option>						
+						<option>gender</option>						
+					</select>
+					<select onchange={{action 'updateFilter'}} class="form-control data-filters-eval">
+						<option>=</option>
+						<option>!=</option>
+						<option>&lt;</option>
+						<option>&gt;</option>							
+						<option>&lt;=</option>
+						<option>&gt;=</option>
+						<option>in</option>
+						<option>not in</option>
+					</select>
+					<input onchange={{action 'updateFilter'}} class="form-control data-filters-value" type="text">
+					<button {{action 'applyFilter'}} class="btn btn-success data-filters-delete">Apply</button>
+					<button {{action 'deleteFilter' filter.id}} class="btn btn-default data-filters-delete"><i class="fa fa-times"></i></button>
+					  </div>
+					</div>
+					{{/each}}					
+				</div>	
+			{{/if}}
+			<!-- end data filter section -->				
 			
 			
 	      </div>

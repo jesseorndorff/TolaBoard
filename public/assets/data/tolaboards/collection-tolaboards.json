@@ -29,6 +29,7 @@
 		"dataSource": {
 			"sourceId": 1
 		},
+		"dataFilters": [{"id":0, "fieldName":"gender", "eval":"=", "param":"female"}],
 		"config": {
 			"type": "pie",
 			"data": {

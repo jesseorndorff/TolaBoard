@@ -33,7 +33,5 @@ module.exports = function(defaults) {
   // temporary for data aggregation only right now
   app.import('bower_components/d3/d3.min.js');
 
-
-
   return app.toTree();
 };

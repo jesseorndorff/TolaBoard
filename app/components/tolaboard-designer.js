@@ -86,6 +86,9 @@ export default Ember.Component.extend({
 		},
 
 		addItem: function() {	
+			// wrap this in a try throw catch
+			// seems like an error occurs and prevents the full api from running
+			// we need this to be atomic
 			console.log('tb designer this',this);	
 			// console.log(this.get('model'));
 			/* if the dynamic segment for the route is 'new', then

@@ -14,23 +14,25 @@ export default Ember.Component.extend({
 
 	dataAgg: Ember.inject.service('data-aggregator'),
 
+	chartConfig: Ember.Object.create(),
 
 
 	didInsertElement: function() {
 
-		console.log('chartjs component');
+		console.log('chartjs bar component ',this);
 
 		var tolaGraphConfig = {
 			element: '#scope-viz',
-			data: this.get('graph').config.data.data,
+			// data: this.get('graph').config.data.data,
 		    dataModel: this.get('scopeDataModel')
 		};
 
-		tolaGraphConfig.metadata = {
+		/*tolaGraphConfig.metadata = {
 		    	labelList: this.get('dataAgg').oneDimensionGroupKeys(scopeData, [], scopeDataModel[0].field.assigned),
 		    	metricList: this.get('dataAgg').oneDimensionSumValues(scopeData, [], scopeDataModel[0].field.assigned, scopeDataModel[1].field.assigned)
-		    };
+		    };*/
 
+		
 		tolaGraphConfig.chartConfig = {
 		    	type: 'bar',
 		    	data: {
@@ -43,23 +45,23 @@ export default Ember.Component.extend({
 			    options: {}
 			}; // chartConfig
 
-		tolagraphConfig.metadata.metricList = tolagraphConfig.metadata.metricList
-		  									  .map(function(d) { return d.value; });
+		/*tolagraphConfig.metadata.metricList = tolagraphConfig.metadata.metricList
+		  									  .map(function(d) { return d.value; });*/
 		
 		// ok, use our master config and create the tolagraph
-		var barGraph = Tolagraph.create(tolaGraphConfig);
-		barGraph.render = function() {
-			// new Chart(this.element, this.chartConfig);
-		};
+		// var barGraph = Tolagraph.create(tolaGraphConfig);
+		/*barGraph.render = function() {
+			new Chart(this.element, tolaGraphConfig);
+		};*/
 
 
 		// data setup
-		/*var scopeData = this.get('scopeData'),
+		var scopeData = this.get('scopeData'),
 		    scopeDataModel = this.get('scopeDataModel'),
-		    graphConfig = this.get('graphConfig');*/
+		    graphConfig = this.get('graphConfig');
 		
 
-		var labelList = this.get('dataAgg')
+		/*var labelList = this.get('dataAgg')
 		                .oneDimensionGroupKeys(scopeData, [], scopeDataModel[0].field.assigned);
 		
 		var metricList = this.get('dataAgg')
@@ -67,17 +69,17 @@ export default Ember.Component.extend({
 		                 						scopeDataModel[0].field.assigned, 
 		                 						scopeDataModel[1].field.assigned);
 
-		metricList = metricList.map(function(d) { return d.value; });
-		console.log('bar this', this);
+		metricList = metricList.map(function(d) { return d.value; });*/
+		// console.log('bar this', this);
 
 		/*console.log('labelList ',labelList);
 		console.log('metricList', metricList);*/
 
 		// test to render a static bar graph
 
-		var chartElem = Ember.$('#current-builder-widget-graph');
+		// var chartElem = Ember.$('#current-builder-widget-graph');
 
-		var config = {
+		/*var config = {
 	    	type: 'bar',
 	    	data: {
 	        	labels: labelList,
@@ -87,9 +89,30 @@ export default Ember.Component.extend({
 		        }]
 		    },
 		    options: {}
+		};*/
+
+		var fooConfig = {
+	    	type: 'bar',
+	    	data: {
+	        	labels: ['A','X','C'],
+	        	datasets: [{	            	
+	            	data: [32,45,67],
+	            	backgroundColor: '#00afaa'
+		        }]
+		    },
+		    options: {}
 		};
 
-		// var graph = new Chart(chartElem, config);
+		// var graph = new Chart(this.get('element'), fooConfig);
+
+
+		var ctx = this.$('canvas');
+		
+		ctx.resize(function() {
+			'resize detected';
+		});
+
+		var testChart = new Chart(ctx, fooConfig);
 	},
 
 	willDestroyElement: function() {

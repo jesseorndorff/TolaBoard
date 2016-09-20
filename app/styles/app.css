@@ -65,14 +65,7 @@ h1,h2,h3,h4,h5,h6 {
 	text-align: center;
 }
 
-/* datasources.hbs */
-/*.thumbnail {
-	text-decoration: none !important;
-	color: #fff;
-}
-.thumbnail:hover {
-	opacity: .60;	
-}*/
+/* what is this? */
 .data-internal {
 	background-color: rgb(77, 82, 90);
 }
@@ -144,11 +137,15 @@ h1,h2,h3,h4,h5,h6 {
 	border-radius: 2px;
 	margin-top: 0px;
 }
+/* Graph Builder Widget Component */
 .builder-widget {
 	width: 1000px;
 }
 
 /* Data Source Preview Scrollbox */
+#data-source-select {
+	width: 600px;
+}
 .data-preview, .viz-selection {
 	margin: 10px 10px;
 
@@ -166,6 +163,28 @@ h1,h2,h3,h4,h5,h6 {
 	padding-left: 1px;
 	padding-right: 1px;
 }
+.data-filters {}
+.data-filters-row *{
+	float: left;
+	margin-top: 5px;
+	margin-right: 7px;
+}
+.data-filters-field {
+	width: 350px;
+}
+.data-filters-eval {
+	width: 70px;
+	margin-right: 7px;
+}
+.data-filters-value {
+	width: 300px;
+}
+.data-filters-row button {
+	margin-top: 5px;
+	margin-left: 3px;
+	text-align: center;
+}
+
 .graph-library div.col-md-2 {
 	padding-left: 5px;
 	padding-right: 5px;
@@ -229,6 +248,9 @@ a.thumbnail:focus {
 .field-select li:hover {
 	background-color: #ddd;	
 	cursor: default;
+}
+.gbw-graph {
+	margin-top: 15px;
 }
 #footer {
 	position: fixed;

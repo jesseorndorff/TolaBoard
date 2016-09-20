@@ -7,6 +7,7 @@ export default Ember.Component.extend({
 	showDataModel: false,
 	renderGraph: false,
 	fieldIndex: 0,
+	filters: [],
 
 	field: Ember.computed('fieldIndex', function() {
 		return this.get('scopeData')[this.get('fieldIndex')]
@@ -25,13 +26,14 @@ export default Ember.Component.extend({
 	// wanted to log these hooks running to understand Ember better
 	// Ember calls these methods
 	didInsertElement: function() {
+
 		// console.log('gbw didInsertElement invoked on gbw',this);
 		/*console.log('tbi',this.get('tbItem'));
 		console.log('aw',this.get('activeWidget'));
 		console.log('aEl',this.get('activeElement'));
 		console.log('aIn',this.get('activeIndex'));*/
 		var tbItemConfig = this.get('activeTBItemConfig');
-		// console.log('active tbi config',tbItemConfig);
+		console.log('gbw this ',this);
 		// console.log('data sources',this.get('dataSources'));
 		// console.log('source id',this.get('activeTBItemConfig').graph.dataSourceId);
 
@@ -68,7 +70,7 @@ export default Ember.Component.extend({
 	actions: {
 
 		toggleDataSourcePreview: function() { 
-			this.toggleProperty('showDataSourcePreview');
+			this.set('showDataSourcePreview',true);
 
 			var tolagraphConfig = {
 				// dataSource: this.
@@ -78,10 +80,11 @@ export default Ember.Component.extend({
 
 		},		
 		
-		getData: function(source) {
+		getData: function(url) {
+			// console.log('getData called with: ',source);
 			var self = this;
-			var url = source.get('url');
-			this.toggleProperty('showDataSourcePreview');
+			// var url = source.get('url');
+			this.set('showDataSourcePreview',true);
 			// this.set('dataSourceLabel')
 			// this.toggleProperty('showVizSelection');
 
@@ -96,6 +99,31 @@ export default Ember.Component.extend({
 				
 			});
 
+		},
+
+		/* manipulates array of filters */
+		addFilter: function() {
+			// get max id of current filterArr, add 1, and that's the new id
+			var filterArr = this.get('filters'),
+			    newID;
+			
+			if (filterArr.length === 0) {
+				newID = 0;
+			}
+			else {
+				newID = 1+Math.max.apply(null, filterArr.map(function(d) { return d.id}));
+			}
+			filterArr.pushObject({id:newID});
+			
+		},
+		/* delete filter of matching id */			
+		deleteFilter: function(id) {			
+			var filterArr = this.get('filters');
+			var index = filterArr.map(function(d) { return d.id}).indexOf(id); // index of located id
+			filterArr.removeObject(filterArr[index]);			
+		},
+		updateFilter: function(id, params) {
+			console.log('update filter!!! ', id);
 		},
 		/* Handles updating the data bound to the dropdown area. When a graph
 		   is selected (ie. image clicked), the dataModel for the graph type
@@ -132,6 +160,7 @@ export default Ember.Component.extend({
 			console.log('scopeDataModel',this.get('scopeDataModel'));
 			console.log('scopeComponent',this.get('scopeComponent'));
 			
+			
 			// console.log(dataModelFieldName,': ',selectedField);
 			
 			// find index of selectedField in dataModel
@@ -145,7 +174,8 @@ export default Ember.Component.extend({
 				// should destroy existing component... calls willDestroyElement
 				// this.set('scopeComponent',undefined);	
 				// console.log('renderGraph now being set to false');
-				this.set('renderGraph',true);
+				/*this.set('renderGraph',true);
+				this.set('showDataFilters',true);*/
 
 				
 
@@ -169,6 +199,7 @@ export default Ember.Component.extend({
 				var self = this;
 				setTimeout(function() { 
 					self.set('renderGraph',true); 
+					self.set('showDataFilters',true);
 				}, 250);
 				this.toggleProperty('disableSave');
 				// this.set('scopeComponent','graphs/chartjs-bar');	
@@ -182,10 +213,13 @@ export default Ember.Component.extend({
 
 		clearGraphBuilder: function() {
 
+			Ember.$('#data-source-select option:eq(0)').prop('selected',true);
 			this.set('showDataSourcePreview', false);
 			this.set('showVizSelection', false);
 			this.set('showDataModel', false);
 			this.set('renderGraph', false);		
+			this.set('showDataFilters',false);
+			this.set('filters', []);
 			this.set('scopeData', []);
 			this.set('scopeGraphID', undefined);
 			this.set('scopeDataModel', {});
